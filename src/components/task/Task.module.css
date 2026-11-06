@@ -1,0 +1,103 @@
+.nextStep {
+  border: 1px solid var(--app-border);
+  background: var(--app-surface);
+}
+
+.nextStep[data-has-actions='true'] {
+  border-color: var(--mantine-color-teal-3);
+  background: var(--mantine-color-teal-0);
+  box-shadow: inset 4px 0 0 var(--mantine-primary-color-filled);
+}
+
+:root[data-mantine-color-scheme='dark'] .nextStep[data-has-actions='true'] {
+  border-color: var(--mantine-color-teal-8);
+  background: var(--mantine-color-teal-light);
+}
+
+.eyebrow {
+  color: var(--mantine-color-dimmed);
+  letter-spacing: 0.06em;
+}
+
+.reworkNote {
+  background: var(--status-needs_rework-bg);
+  color: var(--status-needs_rework-fg);
+  border-radius: var(--mantine-radius-md);
+}
+
+/* Phones: next step, details, description, history. Desktop: details become a sticky side panel. */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--mantine-spacing-lg);
+  align-items: start;
+}
+
+.areaNext,
+.areaMain {
+  min-width: 0;
+}
+
+@media (min-width: 62em) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+  }
+
+  .areaNext,
+  .areaMain {
+    grid-column: 1;
+  }
+
+  .areaMeta {
+    position: sticky;
+    top: calc(var(--app-header-h) + var(--mantine-spacing-lg));
+    grid-column: 2;
+    grid-row: 1 / span 3;
+  }
+}
+
+.metaList {
+  display: grid;
+  gap: 0.875rem;
+  margin: 0;
+}
+
+.metaList dt {
+  margin-bottom: 0.125rem;
+  color: var(--mantine-color-dimmed);
+  font-size: var(--mantine-font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.metaList dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.description {
+  max-width: 68ch;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+
+.comment {
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--app-border);
+  border-radius: 0 var(--mantine-radius-sm) var(--mantine-radius-sm) 0;
+  background: var(--app-canvas);
+  font-size: var(--mantine-font-size-sm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.timelineBullet {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--dot, var(--mantine-color-dimmed));
+}

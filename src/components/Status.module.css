@@ -1,0 +1,110 @@
+/* Status semantics come from --status-<name>-{fg,bg,dot} in theme/tokens.css. */
+.badge,
+.chip,
+.segment {
+  --fg: var(--mantine-color-dimmed);
+  --bg: var(--app-canvas);
+  --dot: var(--mantine-color-dimmed);
+}
+
+[data-status='new'] { --fg: var(--status-new-fg); --bg: var(--status-new-bg); --dot: var(--status-new-dot); }
+[data-status='in_progress'] { --fg: var(--status-in_progress-fg); --bg: var(--status-in_progress-bg); --dot: var(--status-in_progress-dot); }
+[data-status='under_review'] { --fg: var(--status-under_review-fg); --bg: var(--status-under_review-bg); --dot: var(--status-under_review-dot); }
+[data-status='accepted'] { --fg: var(--status-accepted-fg); --bg: var(--status-accepted-bg); --dot: var(--status-accepted-dot); }
+[data-status='needs_rework'] { --fg: var(--status-needs_rework-fg); --bg: var(--status-needs_rework-bg); --dot: var(--status-needs_rework-dot); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.1875rem 0.5rem;
+  border-radius: var(--mantine-radius-sm);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: var(--mantine-font-size-xs);
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.badge[data-size='md'] {
+  padding: 0.25rem 0.625rem;
+  font-size: var(--mantine-font-size-sm);
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: none;
+  border-radius: 50%;
+  background: var(--dot);
+}
+
+/* Stacked distribution bar on the site list. */
+.bar {
+  display: flex;
+  gap: 2px;
+  height: 0.375rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--app-canvas);
+}
+
+.segment {
+  background: var(--dot);
+}
+
+/* Filter chips. */
+.chips {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.125rem;
+  margin: -0.125rem;
+  scrollbar-width: thin;
+}
+
+.chip {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.25rem;
+  padding: 0 0.875rem;
+  border: 1px solid var(--app-border);
+  border-radius: 999px;
+  background: var(--app-surface);
+  color: var(--mantine-color-text);
+  font: inherit;
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 550;
+  cursor: pointer;
+  transition: background-color var(--app-dur-fast) var(--app-ease), border-color var(--app-dur-fast) var(--app-ease);
+}
+
+.chip:hover {
+  background: var(--app-hover);
+}
+
+.chip[aria-pressed='true'] {
+  border-color: var(--fg);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.chip[data-status='all'][aria-pressed='true'] {
+  border-color: var(--mantine-primary-color-filled);
+  background: var(--mantine-primary-color-light);
+  color: var(--mantine-primary-color-light-color);
+}
+
+.count {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.8;
+}
+
+@media (max-width: 48em), (pointer: coarse) {
+  .chip {
+    min-height: var(--app-touch);
+  }
+}

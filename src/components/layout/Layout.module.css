@@ -1,0 +1,98 @@
+.header {
+  background: var(--app-surface);
+  border-bottom: 1px solid var(--app-border);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: var(--app-touch);
+  color: var(--mantine-color-text);
+  text-decoration: none;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.brandIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--mantine-radius-md);
+  background: var(--mantine-primary-color-filled);
+  color: var(--mantine-color-white);
+}
+
+.brandAmp {
+  color: var(--mantine-primary-color-filled);
+}
+
+:root[data-mantine-color-scheme='dark'] .brandAmp {
+  color: var(--mantine-color-teal-4);
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: var(--app-header-h);
+  padding: 0 0.75rem;
+  color: var(--mantine-color-dimmed);
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 550;
+  text-decoration: none;
+  transition: color var(--app-dur-fast) var(--app-ease);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: var(--mantine-primary-color-filled);
+  transform: scaleX(0);
+  transition: transform var(--app-dur) var(--app-ease);
+}
+
+.navLink:hover {
+  color: var(--mantine-color-text);
+}
+
+.navLink[aria-current='page'] {
+  color: var(--mantine-color-text);
+}
+
+.navLink[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+.userButton {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: var(--app-touch);
+  padding: 0.25rem 0.5rem 0.25rem 0.25rem;
+  border-radius: var(--mantine-radius-md);
+  transition: background-color var(--app-dur-fast) var(--app-ease);
+}
+
+.userButton:hover {
+  background: var(--app-hover);
+}
+
+.main {
+  background: var(--app-canvas);
+  min-height: 100dvh;
+}
+
+.drawerUser {
+  padding: 0.75rem;
+  border-radius: var(--mantine-radius-md);
+  background: var(--app-canvas);
+}

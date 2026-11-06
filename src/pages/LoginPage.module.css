@@ -1,0 +1,38 @@
+.page {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: var(--mantine-spacing-xl) var(--mantine-spacing-md);
+  background-color: var(--app-canvas);
+}
+
+/* Faint survey grid (a nod to site plans), faded out towards the edges. */
+.page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--app-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--app-border) 1px, transparent 1px);
+  background-size: 2.5rem 2.5rem;
+  background-position: center;
+  mask-image: radial-gradient(ellipse at center, #000 0%, transparent 65%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.page > * {
+  position: relative;
+}
+
+.toggle {
+  position: absolute;
+  top: var(--mantine-spacing-md);
+  right: var(--mantine-spacing-md);
+  z-index: 1;
+}
+
+.card {
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 12px 32px -12px rgb(0 0 0 / 0.18);
+}

@@ -1,0 +1,121 @@
+/* Clickable rows: the title link stretches over the whole row (keyboard: one Tab stop per row);
+   row-level menus sit above the stretched link. Stacks into cards on phones. */
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--app-border);
+  border-radius: var(--mantine-radius-lg);
+  background: var(--app-surface);
+  overflow: hidden;
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  padding: 0.875rem 0.75rem 0.875rem 1.25rem;
+  transition: background-color var(--app-dur-fast) var(--app-ease);
+}
+
+.row + .row {
+  border-top: 1px solid var(--app-border);
+}
+
+.row:hover {
+  background: var(--app-hover);
+}
+
+.row:has(.rowLink:focus-visible) {
+  outline: 2px solid var(--mantine-primary-color-filled);
+  outline-offset: -2px;
+}
+
+.main {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rowLink {
+  color: var(--mantine-color-text);
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.rowLink:focus-visible {
+  outline: none;
+}
+
+.rowLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1rem;
+  color: var(--mantine-color-dimmed);
+  font-size: var(--mantine-font-size-sm);
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-width: 0;
+}
+
+.metaItem > svg {
+  flex: none;
+}
+
+.aside {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+.chevron {
+  color: var(--mantine-color-dimmed);
+  transition: transform var(--app-dur-fast) var(--app-ease);
+}
+
+.row:hover .chevron {
+  transform: translateX(2px);
+}
+
+@media (max-width: 36em) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 0.875rem 0.5rem 0.875rem 1rem;
+  }
+
+  .aside {
+    grid-column: 1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+
+  .actions {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+  }
+}

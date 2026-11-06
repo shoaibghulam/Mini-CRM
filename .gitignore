@@ -1,0 +1,65 @@
+# --- secrets -----------------------------------------------------------------
+# The workspace guard hook checks for this rule before letting credentials be
+# written. Do not remove it.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# --- dependencies -------------------------------------------------------------
+node_modules/
+.pnpm-store/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.tox/
+
+# --- build output --------------------------------------------------------------
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.turbo/
+*.tsbuildinfo
+
+# --- test + coverage -----------------------------------------------------------
+coverage/
+.pytest_cache/
+.nyc_output/
+playwright-report/
+test-results/
+
+# --- tooling caches ------------------------------------------------------------
+.cache/
+.eslintcache
+.ruff_cache/
+.mypy_cache/
+
+# --- editor / OS ---------------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# --- Claude ---------------------------------------------------------------------
+# Shared project harness is committed; personal overrides are not.
+.claude/settings.local.json
+.claude/.cache/
+
+# --- third-party design skill (local tooling, not part of the app) ---
+.claude/skills/ui-ux-pro-max/
+
+# --- not part of the submission (local workspace harness, source PDFs, tool caches) ---
+CLAUDE.md
+.claude/
+*.pdf
+.ruff_cache/
+

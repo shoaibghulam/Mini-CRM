@@ -1,0 +1,132 @@
+/*
+ * App design tokens. Mantine owns component colours (see theme.ts); this file
+ * owns the canvas, surfaces, status semantics and motion. Every raw colour
+ * lives here once; components reference the custom properties.
+ */
+:root {
+  --app-canvas: #f5f7f8;
+  --app-surface: var(--mantine-color-body);
+  --app-border: var(--mantine-color-default-border);
+  --app-hover: #eef3f3;
+  --app-header-h: 3.5rem;
+  --app-touch: 2.75rem; /* 44px minimum touch target */
+  --app-ease: cubic-bezier(0.2, 0, 0, 1);
+  --app-dur-fast: 150ms;
+  --app-dur: 200ms;
+
+  /* Task statuses: fg on bg is >= 6:1 in both schemes (see report). */
+  --status-new-fg: #334155;
+  --status-new-bg: #eef2f6;
+  --status-new-dot: #64748b;
+  --status-in_progress-fg: #1e40af;
+  --status-in_progress-bg: #dbeafe;
+  --status-in_progress-dot: #2563eb;
+  --status-under_review-fg: #92400e;
+  --status-under_review-bg: #fef3c7;
+  --status-under_review-dot: #d97706;
+  --status-accepted-fg: #166534;
+  --status-accepted-bg: #dcfce7;
+  --status-accepted-dot: #16a34a;
+  --status-needs_rework-fg: #9a3412;
+  --status-needs_rework-bg: #ffedd5;
+  --status-needs_rework-dot: #ea580c;
+}
+
+:root[data-mantine-color-scheme='dark'] {
+  --app-canvas: var(--mantine-color-dark-8);
+  --app-hover: var(--mantine-color-dark-6);
+
+  --status-new-fg: #cbd5e1;
+  --status-new-bg: rgb(148 163 184 / 0.16);
+  --status-new-dot: #94a3b8;
+  --status-in_progress-fg: #93c5fd;
+  --status-in_progress-bg: rgb(59 130 246 / 0.2);
+  --status-in_progress-dot: #60a5fa;
+  --status-under_review-fg: #fcd34d;
+  --status-under_review-bg: rgb(245 158 11 / 0.18);
+  --status-under_review-dot: #fbbf24;
+  --status-accepted-fg: #86efac;
+  --status-accepted-bg: rgb(34 197 94 / 0.18);
+  --status-accepted-dot: #4ade80;
+  --status-needs_rework-fg: #fdba74;
+  --status-needs_rework-bg: rgb(249 115 22 / 0.2);
+  --status-needs_rework-dot: #fb923c;
+}
+
+html {
+  background: var(--app-canvas);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background: var(--app-canvas);
+  font-feature-settings: 'cv11', 'ss01';
+  touch-action: manipulation;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Keyboard focus is always visible, including on custom link rows. */
+:where(a, button, [role='button'], [tabindex]):focus-visible {
+  outline: 2px solid var(--mantine-primary-color-filled);
+  outline-offset: 2px;
+}
+
+/* Touch targets: 44px on phones and coarse pointers, denser on desktop. */
+@media (max-width: 48em), (pointer: coarse) {
+  .mantine-Button-root,
+  .mantine-ActionIcon-root,
+  .mantine-Burger-root {
+    min-height: var(--app-touch);
+  }
+  .mantine-ActionIcon-root,
+  .mantine-Burger-root {
+    min-width: var(--app-touch);
+  }
+  .mantine-Input-input:not(textarea) {
+    min-height: var(--app-touch);
+  }
+  .mantine-Menu-item {
+    min-height: var(--app-touch);
+  }
+}
+
+/* Page titles step down on phones so long task names keep a readable measure. */
+@media (max-width: 36em) {
+  .mantine-Title-root[data-order='1'] {
+    font-size: 1.375rem;
+  }
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1000;
+  padding: 0.5rem 1rem;
+  border-radius: var(--mantine-radius-md);
+  background: var(--mantine-primary-color-filled);
+  color: var(--mantine-color-white);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--app-dur-fast) var(--app-ease);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
